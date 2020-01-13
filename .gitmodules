@@ -1,0 +1,3 @@
+[submodule "scryfall"]
+	path = scryfall
+	url = https://github.com/jdharmon/scryfallapi-nodejs.git
