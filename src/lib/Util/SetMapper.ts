@@ -1,8 +1,12 @@
 import * as yaml from 'js-yaml';
 import { readFileSync } from 'fs';
+import { Card } from '../../../scryfall/lib/models';
 
-export interface VendorMapSchema {
+export interface VendorSetName {
   [key: string]: string
+}
+export interface VendorMapSchema {
+  vendor: VendorSetName
 }
 
 export interface SetMapSchema {
@@ -33,5 +37,19 @@ export default class SetMapper {
 
   public getMaps(): SetMapSchema {
     return this.maps;
+  }
+
+
+
+  public getVendorSetName(card:Card, vendor: String): string  {
+    const { set: setCode } = card
+
+    try {
+      const mappedSetName = this.maps.sets[setCode].vendors[vendor]
+
+      return mappedSetName;
+    } catch(err) {
+      return setCode;
+    }
   }
 }

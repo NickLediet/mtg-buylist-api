@@ -15,13 +15,11 @@ async function main() {
 
     console.log(card.setName);
 
+    console.log(SetMapper.getInstance().getVendorSetName(card, 'f2f'))
+
     console.log(scgUrlService.getUrl(
       await scryfallApi.getClient().cards.getRandom()
     ));
-
-    console.log(__dirname)
-
-    console.log(SetMapper.getInstance().getMaps())
   } catch(err) {
     console.log(err)
   }
