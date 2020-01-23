@@ -1,0 +1,30 @@
+version: "3"
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://user:pass@postgres:5432/db
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      DATABASE_PORT: 5432
+      DATABASE_CLIENT: postgres
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    # command: "npm run start:dev"
+    volumes:
+      - .:/app/
+      - /app/node_modules
+
+  postgres:
+    image: postgres:10.4
+    ports:
+      - "35432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db
+
